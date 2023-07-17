@@ -44,6 +44,32 @@ Marcos Cantelli - RM84582 \
 
 ## Setup
 1. Clone o projeto na sua máquina local usando 'git clone https://github.com/Clube-dos-5/Toledo.git'
-2. Crie um ambiente virtual usando 'python -m venv venv' ('virtualenv --python python3 venv' no Linux)
-3. Ative o ambiente virtual usando 'venv\Scripts\activate.bat' ('source venv/bin/activate' no Linux)
-4. Instale as dependências usando 'pip install -r requirements.txt'
+2. Crie um ambiente virtual:
+
+    - No Windows usando:
+    
+```bash
+python -m venv venv
+```
+    - No Linux usando:
+
+```bash
+virtualenv --python python3 venv
+```
+3. Ative o ambiente virtual:
+
+    - No Windows usando:
+
+```bash
+venv\Scripts\activate.bat
+```
+    - No Linux usando:
+
+```bash
+source venv/bin/activate
+```
+
+4. Instale as dependências usando:
+```bash
+pip install -r requirements.txt
+```
