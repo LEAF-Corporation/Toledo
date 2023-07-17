@@ -29,10 +29,7 @@ Marcos Cantelli - RM84582 \
 # Sumário
 
 - [Instalação](#instalação)
-    - 
 - [Setup](#setup)
-    - 
 - [Iniciar](#iniciar)
-    - 
 - [Testes](#testes)
 - [Links](#links)
