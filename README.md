@@ -8,6 +8,11 @@
 <img src="https://komarev.com/ghpvc/?username=Clube-dos-5&color=brightgreen" alt="watching_count" />
 [![python](https://img.shields.io/badge/Python-3.9-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
 
+
+<a href="https://www.fiap.com.br">
+    <img src="https://github.com/Clube-dos-5/Toledo/blob/Dev-FaKL/fiap.png" alt="FIAP logo" title="FIAP" align="right" height="60" />
+</a>
+
 ## Challenge Sprint 2023
 
 Para a atividade do Challenge Sprint 2023, foi apresentado um desafio que consiste em prevenir fraudes na pesagem de caminhões, utilizando conceitos e praticas ensinados no curso de Engenharia da Computação.
