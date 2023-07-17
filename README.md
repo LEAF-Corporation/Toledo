@@ -46,24 +46,24 @@ Marcos Cantelli - RM84582 \
 1. Clone o projeto na sua máquina local usando 'git clone https://github.com/Clube-dos-5/Toledo.git'
 2. Crie um ambiente virtual:
 
-    - No Windows usando:
-    
+- No Windows usando:
+
 ```bash
 python -m venv venv
-```
-    - No Linux usando:
+``` 
+- No Linux usando:
 
 ```bash
 virtualenv --python python3 venv
 ```
 3. Ative o ambiente virtual:
 
-    - No Windows usando:
+- No Windows usando:
 
 ```bash
 venv\Scripts\activate.bat
 ```
-    - No Linux usando:
+- No Linux usando:
 
 ```bash
 source venv/bin/activate
