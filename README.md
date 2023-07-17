@@ -18,11 +18,11 @@ Carlos Borges - RM84613 \
 [![Carlos github](https://img.shields.io/badge/GitHub-kmuv1t-181717.svg?style=flat&logo=github)](https://github.com/kmuv1t) \
 Erik Evaristo - RM81052 \
 Eduardo Stefano - RM84498 \
-[![Eduardo github](https://img.shields.io/badge/GitHub-dugimenes--jpg-181717.svg?style=flat&logo=github)](https://github.com/dugimenes-jpg) \
+[![Eduardo github](https://img.shields.io/badge/GitHub-dugimenes--jpg-181717.svg?style=flat&logo=github)](https://github.com/dugimenes-jpg) 
 # 4ECA
 Fábio Pipek - RM84566 \
 [![Fábio github](https://img.shields.io/badge/GitHub-fabiopipek-181717.svg?style=flat&logo=github)](https://github.com/fabiopipek) \
 Guilherme Cabrini - RM84189 \
 Marcos Cantelli - RM84582
-[![Marcos github](https://img.shields.io/badge/GitHub-MrHighTech20-181717.svg?style=flat&logo=github)](https://github.com/MrHighTech20) \
+[![Marcos github](https://img.shields.io/badge/GitHub-MrHighTech20-181717.svg?style=flat&logo=github)](https://github.com/MrHighTech20) 
 
