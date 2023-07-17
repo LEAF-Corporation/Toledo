@@ -23,6 +23,6 @@ Eduardo Stefano - RM84498 \
 Fábio Pipek - RM84566 \
 [![Fábio github](https://img.shields.io/badge/GitHub-fabiopipek-181717.svg?style=flat&logo=github)](https://github.com/fabiopipek) \
 Guilherme Cabrini - RM84189 \
-Marcos Cantelli - RM84582
+Marcos Cantelli - RM84582 \
 [![Marcos github](https://img.shields.io/badge/GitHub-MrHighTech20-181717.svg?style=flat&logo=github)](https://github.com/MrHighTech20) 
 
