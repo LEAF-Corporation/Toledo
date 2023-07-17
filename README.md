@@ -7,6 +7,7 @@
 [![Github All Releases](https://img.shields.io/github/downloads/Clube-dos-5/Toledo/total.svg)]()
 <img src="https://img.shields.io/github/stars/Clube-dos-5?label=Stars" alt="stars">
 <img src="https://komarev.com/ghpvc/?username=Clube-dos-5&color=brightgreen" alt="watching_count" />
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=Clube-dos-5.Clube-dos-5)
 
 
 Challenge Sprint 2023 - Toledo
