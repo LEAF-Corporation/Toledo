@@ -14,19 +14,14 @@ Challenge Sprint 2023 - Toledo
 Componentes do Grupo:
 
 # 4ECR
-
+&nbsp;
 Carlos Borges - RM84613 \
 [![Carlos github](https://img.shields.io/badge/GitHub-kmuv1t-181717.svg?style=flat&logo=github)](https://github.com/kmuv1t) \
-&nbsp;
 Erik Evaristo - RM81052 \
-&nbsp;
 Eduardo Stefano - RM84498 \
-&nbsp;
 
 # 4ECA
 Fabio Pipek - RM84566 \
-&nbsp;
 Guilherme Cabrini - RM84189 \
-&nbsp;
 Marcos Cantelli - RM84582
 
