@@ -8,7 +8,30 @@
 <img src="https://komarev.com/ghpvc/?username=Clube-dos-5&color=brightgreen" alt="watching_count" />
 [![python](https://img.shields.io/badge/Python-3.9-3776AB.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
 
-Challenge Sprint 2023 - Toledo
+## Challenge Sprint 2023
+
+Para a atividade do Challenge Sprint 2023 foi apresentado um desafio que consiste em prevenir fraudes na pesagem de caminhões utilizando conceitos e praticas ensinados no curso de Engenharia da Computação.
+
+### Desafio
+
+Identificar possíveis anomalias ou tentativas de fraude durante a pesagem de caminhões.
+
+### Sistema Atual
+
+Hoje, o sistema de pesagem possui diversos mecanismos antifraude como cartões RFID que são distibuídos às pessoas para identificação
+
+### Possíveis Melhorias
+- Detectar a presença de pessoas ou outros objetos sobre a balaça no momento da pesagem(Visão Computacional).
+- Funcionamento anormal das células de carga (Ciência de Dados).
+- Variação anormal do peso dos veículos (Ciência de Dados).
+
+## Escopo do Projeto
+
+Nosso escopo consiste somente nas pesagens que acontecem com caminhões para transporte (meio do caminho e final) de cargas, não abrangendo pesagem de produtos em lojas, fábricas, nem mecanismos de cancelas automáticas ou manuseadas por funcionários.
+
+## Especificação do Projeto
+
+A proposta deste projeto é desenvolver um sistema que utilize visão computacional e a biblioteca YOLO, a qual já possui uma base de dados, para identificar se o caminhão está mal posicionado na balança. Por meio dessa abordagem, poderemos detectar e verificar o posicionamento dos caminhões estacionados na balança, reduzindo significativamente as possibilidades de fraude.
 
 # Componentes do Grupo:
 
