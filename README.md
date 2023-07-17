@@ -29,7 +29,21 @@ Marcos Cantelli - RM84582 \
 # Sumário
 
 - [Instalação](#instalação)
-- [Setup](#setup)
+    - [Setup](#setup)
 - [Iniciar](#iniciar)
 - [Testes](#testes)
 - [Links](#links)
+
+# Instalação
+
+## Requisitos
+
+- [Python 3.9](https://www.python.org/downloads/)
+- [Pip](https://pip.pypa.io/en/stable/installing/)
+- [Git](https://git-scm.com/downloads) - (opcional, mas recomendado para clonar o projeto e atualizar as versões)
+
+## Setup
+1. Clone o projeto na sua máquina local usando 'git clone https://github.com/Clube-dos-5/Toledo.git'
+2. Crie um ambiente virtual usando 'python -m venv venv' ('virtualenv --python python3 venv' no Linux)
+3. Ative o ambiente virtual usando 'venv\Scripts\activate.bat' ('source venv/bin/activate' no Linux)
+4. Instale as dependências usando 'pip install -r requirements.txt'
