@@ -43,7 +43,11 @@ Marcos Cantelli - RM84582 \
 - [Git](https://git-scm.com/downloads) - (opcional, mas recomendado para clonar o projeto e atualizar as versões)
 
 ## Setup
-1. Clone o projeto na sua máquina local usando 'git clone https://github.com/Clube-dos-5/Toledo.git'
+1. Clone o projeto na sua máquina local usando:
+```bash
+git clone https://github.com/Clube-dos-5/Toledo.git
+```
+
 2. Crie um ambiente virtual:
 
 - No Windows usando:
