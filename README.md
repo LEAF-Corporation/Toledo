@@ -31,7 +31,7 @@ Nosso escopo consiste somente nas pesagens que acontecem com caminhões para tra
 
 ## Especificação do Projeto
 
-A proposta deste projeto é desenvolver um sistema que utilize visão computacional e a biblioteca YOLO, a qual já possui uma base de dados, para identificar se o caminhão está mal posicionado na balança. Por meio dessa abordagem, poderemos detectar e verificar o posicionamento dos caminhões estacionados na balança, reduzindo significativamente as possibilidades de fraude.
+A proposta deste projeto é desenvolver um sistema que utilize visão computacional e a biblioteca [YOLO](https://opencv-tutorial.readthedocs.io/en/latest/yolo/yolo.html#), a qual já possui uma base de dados, para identificar se o caminhão está mal posicionado na balança. Por meio dessa abordagem, poderemos detectar e verificar o posicionamento dos caminhões estacionados na balança, reduzindo significativamente as possibilidades de fraude.
 
 # Componentes do Grupo:
 
