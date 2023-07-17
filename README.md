@@ -2,7 +2,7 @@
     <img src="https://cdn.discordapp.com/attachments/955793075492507668/1130554414428602479/CD5LogoDark.png" alt="CD5 logo" title="CD5" align="right" height="60" />
 </a>
 
-# Toledo
+# Toledo - Visão Computacional com Python
 
 [![Github All Releases](https://img.shields.io/github/downloads/Clube-dos-5/Toledo/total.svg)]()
 <img src="https://komarev.com/ghpvc/?username=Clube-dos-5&color=brightgreen" alt="watching_count" />
