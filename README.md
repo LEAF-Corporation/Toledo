@@ -1,5 +1,5 @@
 <a href="https://github.com/Clube-dos-5">
-    <img src="https://cdn.discordapp.com/attachments/955793075492507668/1130554414428602479/CD5LogoDark.png" alt="CD5 logo" title="CD5" align="right" height="60" />
+    <img src="https://cdn.discordapp.com/attachments/955793075492507668/1130554414428602479/CD5LogoDark.png" alt="CD5 logo" title="CD5" align="right" height="100" />
 </a>
 
 # Toledo
