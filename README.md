@@ -10,7 +10,7 @@
 
 ## Challenge Sprint 2023
 
-Para a atividade do Challenge Sprint 2023 foi apresentado um desafio que consiste em prevenir fraudes na pesagem de caminhões utilizando conceitos e praticas ensinados no curso de Engenharia da Computação.
+Para a atividade do Challenge Sprint 2023, foi apresentado um desafio que consiste em prevenir fraudes na pesagem de caminhões, utilizando conceitos e praticas ensinados no curso de Engenharia da Computação.
 
 ### Desafio
 
