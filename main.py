@@ -1,95 +1,121 @@
 import cv2
+import torch
 import numpy as np
+import pickle
+
+#from CameraCalibration.calibration import calibration
+
+# Inicializar o modelo
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model = torch.hub.load("ultralytics/yolov5", "yolov5x")
+model.names = {0: 'person', 7: 'truck'}
 
 
-# Coordenadas na imagem da câmera 1
-x1_cam1, y1_cam1 = 100, 100
-x2_cam1, y2_cam1 = 300, 100
-x3_cam1, y3_cam1 = 300, 300
-x4_cam1, y4_cam1 = 100, 300
+# Função para processar a detecção
 
-# Coordenadas na imagem da vista de cima para o ponto correspondente na câmera 1
-x_top1, y_top1 = 200, 200
+def processar_detecao(frame, results, device, model):
+    frame_height, frame_width, _ = frame.shape
 
-# Coordenadas na imagem da câmera 2
-x1_cam2, y1_cam2 = 400, 100
-x2_cam2, y2_cam2 = 600, 100
-x3_cam2, y3_cam2 = 600, 300
-x4_cam2, y4_cam2 = 400, 300
+    # Enviar o modelo para a GPU
+    model.to(device)
 
-# Coordenadas na imagem da vista de cima para o ponto correspondente na câmera 2
-x_top2, y_top2 = 500, 200
-
-# Coordenadas na imagem da câmera 3
-x1_cam3, y1_cam3 = 100, 400
-x2_cam3, y2_cam3 = 300, 400
-x3_cam3, y3_cam3 = 300, 600
-x4_cam3, y4_cam3 = 100, 600
-
-# Coordenadas na imagem da vista de cima para o ponto correspondente na câmera 3
-x_top3, y_top3 = 200, 500
-
-# Coordenadas na imagem da câmera 4
-x1_cam4, y1_cam4 = 400, 400
-x2_cam4, y2_cam4 = 600, 400
-x3_cam4, y3_cam4 = 600, 600
-x4_cam4, y4_cam4 = 400, 600
-
-# Coordenadas na imagem da vista de cima para o ponto correspondente na câmera 4
-x_top4, y_top4 = 500, 500
-
-# Defina os pontos de correspondência manualmente para cada câmera
-pts_camera1 = np.float32([[x1_cam1, y1_cam1], [x2_cam1, y2_cam1], [x3_cam1, y3_cam1], [x4_cam1, y4_cam1]])
-pts_camera2 = np.float32([[x1_cam2, y1_cam2], [x2_cam2, y2_cam2], [x3_cam2, y3_cam2], [x4_cam2, y4_cam2]])
-pts_camera3 = np.float32([[x1_cam3, y1_cam3], [x2_cam3, y2_cam3], [x3_cam3, y3_cam3], [x4_cam3, y4_cam3]])
-pts_camera4 = np.float32([[x1_cam4, y1_cam4], [x2_cam4, y2_cam4], [x3_cam4, y3_cam4], [x4_cam4, y4_cam4]])
-
-# Defina os pontos correspondentes na vista de cima para cada câmera
-pts_topview = np.float32([[x_top1, y_top1], [x_top2, y_top2], [x_top3, y_top3], [x_top4, y_top4]])
-
-# Matrizes de transformação para cada câmera
-M1 = cv2.getPerspectiveTransform(pts_camera1, pts_topview)
-M2 = cv2.getPerspectiveTransform(pts_camera2, pts_topview)
-M3 = cv2.getPerspectiveTransform(pts_camera3, pts_topview)
-M4 = cv2.getPerspectiveTransform(pts_camera4, pts_topview)
-
-# Defina as dimensões da imagem resultante da vista de cima
-width = 800
-height = 600
-
-# Inicialize as capturas de vídeo para cada câmera
-cap_camera1 = cv2.VideoCapture(0)
-cap_camera2 = cv2.VideoCapture(1)
-cap_camera3 = cv2.VideoCapture(2)
-cap_camera4 = cv2.VideoCapture(3)
+    # Obter as previsões de detecção
+    pred = results.pred[0]
 
 
-while True:
-    ret1, frame1 = cap_camera1.read()
-    ret2, frame2 = cap_camera2.read()
-    ret3, frame3 = cap_camera3.read()
-    ret4, frame4 = cap_camera4.read()
+    # Iterar sobre cada detecção
+    for det in pred:
+        if int(det[5]) not in [0, 7]:
+            continue
 
-    if not (ret1 and ret2 and ret3 and ret4):
-        break
+        bbox = det[:4]  # Bounding box: (x1, y1, x2, y2)
+        bbox = [int(i) for i in bbox]  # Converter para inteiros
 
-    topview_camera1 = cv2.warpPerspective(frame1, M1, (width, height))
-    topview_camera2 = cv2.warpPerspective(frame2, M2, (width, height))
-    topview_camera3 = cv2.warpPerspective(frame3, M3, (width, height))
-    topview_camera4 = cv2.warpPerspective(frame4, M4, (width, height))
+        classe = model.names[int(det[5])]  # Classificações
 
-    final_topview = cv2.add(topview_camera1, topview_camera2)
-    final_topview = cv2.add(final_topview, topview_camera3)
-    final_topview = cv2.add(final_topview, topview_camera4)
+        # Frente do caminão
 
-    cv2.imshow("Bird's Eye View", final_topview)
+        if classe == "truck":
+            cor = (0, 255, 0)  # Cor verde para caminhão
+            cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), cor, 2)
 
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+            c1, c2 = [(bbox[0]+17, bbox[1]+180), (bbox[2]-95, bbox[3])]
+            l1, l2 = [(bbox[2]-95, bbox[3]), (bbox[2]-30, bbox[3]-85)]
 
-# Libere os recursos e feche as janelas
-cap_camera1.release()
-cap_camera2.release()
-cap_camera3.release()
-cap_camera4.release()
+            # Câmera 1
+            cv2.line(frame, (60, 190), (500, 453), (0, 0, 255), 2)
+            cv2.line(frame, (500, 453), (570, 350), (0, 0, 255), 2)
+
+            # Câmera 2
+            cv2.line(frame, (690, 187), (1133, 453), (0, 0, 255), 2)
+            cv2.line(frame, (1133, 453), (1203, 347), (0, 0, 255), 2)
+
+            comprimento, largura = [(cv2.norm(np.array(c1) - np.array(c2))) * 0.048975,
+                                    (cv2.norm(np.array(l1) - np.array(l2))) * 0.048975]
+            cv2.putText(frame,
+                        f"Caminhao C: {comprimento:.2f}cm L: {largura:.2f}cm",  # {c1, c2, l1, l2}
+                        (bbox[0] + 20, bbox[1] + 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, cor, 2)
+
+        elif classe == "person":
+            # Exibir alerta e desenhar uma bounding box vermelha caso uma pessoa seja detectada
+            cor = (0, 0, 255)  # Cor vermelha para pessoa
+            cv2.rectangle(frame, (bbox[0], bbox[1]), (bbox[2], bbox[3]), cor, 2)
+            cv2.putText(frame, f"ALERTA: Pessoa detectada!", (bbox[0], bbox[1] - 10),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.5, cor, 2)
+
+        # print(f'Class: {classe} - Accuracy: {det[4] * 100:.2f}%')
+
+
+def tirar_distorcao(frame):
+    w, h = frame.shape[:2]
+    cameraMatrix = pickle.load(open("cameraMatrix.pkl", "rb"))
+    dist = pickle.load(open("dist.pkl", "rb"))
+
+    newCameraMatrix, roi = cv2.getOptimalNewCameraMatrix(cameraMatrix, dist, (w, h), 1, (w, h))
+
+    dst = cv2.undistort(frame, cameraMatrix, dist, None, newCameraMatrix)
+    x, y, w, h = roi
+    #dst = dst[y:y + h, x:x + w]
+
+    return dst
+
+
+cap1 = cv2.VideoCapture(0)  # Câmera 1
+cap2 = cv2.VideoCapture(2)  # Câmera 2
+
+cap1.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+cap1.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
+
+cap2.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
+cap2.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
+
+# Inicializar a detecção
+with torch.no_grad():
+    while True:
+        # Ler um frame de cada câmera
+        ret1, frame1 = cap1.read()
+        ret2, frame2 = cap2.read()
+
+        frame1 = tirar_distorcao(frame1)
+        frame2 = tirar_distorcao(frame2)
+
+        # Concatenar horizontalmente os frames
+        combined_frame = np.hstack((frame1, frame2))
+
+        # Executar a detecção no frame combinado
+        results = model(combined_frame)
+
+        # Processar a detecção e desenhar as bounding boxes
+        processar_detecao(combined_frame, results, "cuda", model)
+
+        # Exibir o frame com as bounding boxes
+        cv2.imshow('Deteccao em Tempo Real', combined_frame)
+
+        # Verificar se o usuário pressionou a tecla 'q' para sair
+        if cv2.waitKey(1) & 0xFF == 27:
+            break
+
+# Liberar a captura de vídeo e fechar a janela
+cap1.release()
+cap2.release()
 cv2.destroyAllWindows()
