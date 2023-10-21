@@ -1,6 +1,12 @@
+"""
+ESTE CÓDIGO É UM TESTE DE BOUNDING BOX 3D DE OBJETOS
+*NÃO FAZ PARTE DO CÓDIGO PRINCIPAL*
+"""
+
 import cv2
 import mediapipe as mp
 import time
+
 
 mp_objectron = mp.solutions.objectron
 mp_drawing = mp.solutions.drawing_utils

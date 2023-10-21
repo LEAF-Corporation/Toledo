@@ -1,6 +1,13 @@
+"""
+ESTE CÓDIGO É UM TESTE PARA DETECÇÃO DE CONTORNO EM OBJETOS E CRIAR LINHAS
+*NÃO FAZ PARTE DO CÓDIGO PRINCIPAL*
+"""
+
 import cv2
 import numpy as np
+
 video = cv2.VideoCapture(0)
+
 while True:
     ret, orig_frame = video.read()
     if not ret:
@@ -14,7 +21,7 @@ while True:
     mask = cv2.inRange(hsv, low_blue, high_blue)
 
     edges = cv2.Canny(mask, 75, 150)
-    lines = cv2.HoughLinesP(edges, 1, np.pi/180, 50, maxLineGap=50)
+    lines = cv2.HoughLinesP(edges, 1, np.pi / 180, 50, maxLineGap=50)
     if lines is not None:
         for line in lines:
             x1, y1, x2, y2 = line[0]

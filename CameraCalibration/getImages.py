@@ -17,10 +17,10 @@ while cap.isOpened():
         break
     elif k == ord('s'):  # wait for 's' key to save and exit
         cv2.imwrite('../images/img' + str(num) + '.png', img)
-        print("image saved!")
+        print(f'Imagem {num} salva!')
         num += 1
 
-    cv2.imshow('Img',img)
+    cv2.imshow('Img', img)
 
 # Release and destroy all windows before termination
 cap.release()

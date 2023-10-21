@@ -22,7 +22,7 @@ objp = objp * size_of_chessboard_squares_mm
 objpoints = []  # 3d point in real world space
 imgpoints = []  # 2d points in image plane.
 
-images = glob.glob('../images/*.png')
+images = glob.glob('images/*.png')
 
 for image in images:
 
@@ -50,12 +50,12 @@ cv.destroyAllWindows()
 ret, cameraMatrix, dist, rvecs, tvecs = cv.calibrateCamera(objpoints, imgpoints, frameSize, None, None)
 
 # Save the camera calibration result for later use (we won't worry about rvecs / tvecs)
-pickle.dump(cameraMatrix, open("../Toledo/cameraMatrix.pkl", "wb"))
-pickle.dump(dist, open("../Toledo/dist.pkl", "wb"))
+pickle.dump(cameraMatrix, open("../config/cameraMatrix.pkl", "wb"))
+pickle.dump(dist, open("../config/dist.pkl", "wb"))
 
 # UNDISTORTION #
 
-img = cv.imread('../Toledo/img10.png')
+img = cv.imread('result/img10.png')
 h, w = img.shape[:2]
 newCameraMatrix, roi = cv.getOptimalNewCameraMatrix(cameraMatrix, dist, (w, h), 1, (w, h))
 
@@ -65,7 +65,7 @@ dst = cv.undistort(img, cameraMatrix, dist, None, newCameraMatrix)
 # crop the image
 x, y, w, h = roi
 dst = dst[y:y + h, x:x + w]
-cv.imwrite('../Toledo/img11.png', dst)
+cv.imwrite('result/img11.png', dst)
 
 # Undistort with Remapping
 mapx, mapy = cv.initUndistortRectifyMap(cameraMatrix, dist, None, newCameraMatrix, (w, h), 5)
@@ -74,7 +74,7 @@ dst = cv.remap(img, mapx, mapy, cv.INTER_LINEAR)
 # crop the image
 x, y, w, h = roi
 dst = dst[y:y + h, x:x + w]
-cv.imwrite('../Toledo/img12.png', dst)
+cv.imwrite('result/img12.png', dst)
 
 # Reprojection Error
 mean_error = 0
@@ -84,4 +84,4 @@ for i in range(len(objpoints)):
     error = cv.norm(imgpoints[i], imgpoints2, cv.NORM_L2) / len(imgpoints2)
     mean_error += error
 
-print("total error: {}".format(mean_error / len(objpoints)))
+print("Erro total: {}".format(mean_error / len(objpoints)))
