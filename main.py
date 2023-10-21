@@ -43,7 +43,7 @@ def carregar_cameras(index: int) -> cv2.VideoCapture:
 
 # Inicia as duas câmeras
 cap1 = carregar_cameras(0)
-cap2 = carregar_cameras(2)
+cap2 = carregar_cameras(1)
 
 # Verifica se núcleos CUDA estão disponíveis e carrega o dataset YOLOv5
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
