@@ -4,7 +4,6 @@ DEIXEI AS FUNÇÕES COMENTADAS PARA CONSCIENTIZAR PARA O QUE CADA UMA SERVE.
 *TENHA PARA NÃO SUBIR ALTERAÇÕES INDEVIDAMENTE*
 """
 
-
 import cv2
 import torch
 import numpy as np
@@ -16,8 +15,30 @@ import os
 from random import choice, shuffle, uniform
 from datetime import datetime
 import time as t
+import tkinter as tk
 
-print('Bem-vindo à ferramenta MSQTRS\nToledo do Brasil - Indústria de Balanças Ltda.\nCopyright ©2023')
+
+def popup(mensagem):
+    """
+    Exibe um pop-up com uma mensagem e fecha sozinho após 2s.
+
+    Args:
+        mensagem: A mensagem que será exibida no pop-up.
+    """
+    janela = tk.Tk()
+    janela.title("Ferramenta MSQTRS")
+    janela.geometry("300x100")
+
+    label = tk.Label(janela, text=mensagem)
+    label.pack()
+
+    janela.after(3500, janela.destroy)
+    janela.geometry("+%d+%d" % (810, 490))
+    janela.iconbitmap("prix.ico")
+    janela.mainloop()
+
+
+popup('Bem-vindo à ferramenta MSQTRS\nToledo do Brasil - Indústria de Balanças Ltda.\nCopyright ©2023')
 
 
 def carregar_cameras(index: int) -> cv2.VideoCapture:
@@ -73,6 +94,16 @@ def processar_deteccao(frame, results, device, model):
     # Obter as previsões de detecção
     pred = results.pred[0]
 
+    # Câmera 1: Linha de demarcação da pista
+    a, b, c = [(23, 193), (510, 506), (590, 363)]
+    cv2.line(frame, a, b, (0, 0, 255), 2)
+    cv2.line(frame, b, c, (0, 0, 255), 2)
+
+    # Câmera 2: Linha de demarcação da pista
+    d, e, f = [(663, 219), (1157, 503), (1238, 355)]
+    cv2.line(frame, d, e, (0, 0, 255), 2)
+    cv2.line(frame, e, f, (0, 0, 255), 2)
+
     # Iterar sobre cada detecção
     for det in pred:
         if int(det[5]) not in [0, 7]:  # Se não tiver caminhão/pessoa, pula a detecção do frame.
@@ -89,14 +120,6 @@ def processar_deteccao(frame, results, device, model):
 
             c1, c2 = [(bbox[0] + 17, bbox[1] + 180), (bbox[2] - 95, bbox[3])]
             l1, l2 = [(bbox[0] + 446, bbox[1] + 433), (bbox[2] - 30, bbox[3] - 85)]
-
-            # Câmera 1: Linha de demarcação da pista
-            cv2.line(frame, (56, 187), (500, 453), (0, 0, 255), 2)
-            cv2.line(frame, (500, 453), (570, 350), (0, 0, 255), 2)
-
-            # Câmera 2: Linha de demarcação da pista
-            cv2.line(frame, (690, 190), (1137, 453), (0, 0, 255), 2)
-            cv2.line(frame, (1137, 453), (1205, 350), (0, 0, 255), 2)
 
             # Algoritmo de cálculo do comprimento e largura do caminhão
             comprimento, largura = [(cv2.norm(np.array(c1) - np.array(c2))) * 0.048975,
